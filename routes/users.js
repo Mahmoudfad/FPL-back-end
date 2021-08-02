@@ -3,7 +3,7 @@ const router = express.Router();
 const userModel = require('../models/userSchema');
 const bcrypt =require('bcryptjs');
 const jwt = require('jsonwebtoken');
-// const passport = require('passport');
+
 
 // Register
 router.post('/register', async(req, res)=>{
@@ -13,7 +13,7 @@ router.post('/register', async(req, res)=>{
           name : req.body.name,
           email:  req.body.email,
           password:hash,
-        //   role : "user"
+     
       });
     user.save().then(x=>{
       res.json({message:"sent"})})
@@ -47,7 +47,7 @@ router.post('/login', async function  (req, res) {
     const data={
                email: user.email,
                userId:user._id,
-              //  role : user.role
+           
              };
              const createdToken = jwt.sign(data,'secret', {expiresIn:'1h'});
              res.json({message:'login succesfully', token :createdToken })
